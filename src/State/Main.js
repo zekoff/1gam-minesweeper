@@ -2,11 +2,11 @@
 
 var Main = {};
 
-var ROWS = 6;
+var ROWS = 15;
 var COLUMNS = 6;
 
-var X_OFFSET = 200;
-var Y_OFFSET = 400;
+var X_OFFSET = 20;
+var Y_OFFSET = 20;
 
 Main.create = function() {
     var tiles = [];
@@ -14,10 +14,11 @@ Main.create = function() {
     for (col = 0; col < COLUMNS; col++) {
         tiles.push([]);
         for (row = 0; row < ROWS; row++) {
-            var tile = game.add.image(0, 0, 'pix');
-            tile.width = 100;
-            tile.height = 100;
-            tile.x = X_OFFSET + col * 120 + 60 * (row % 2);
+            var tile = game.add.image(0, 0, game.rnd.pick(['grass', 'trees', 'rocks']));
+            tile.tint = 0xdddddd;
+            tile.width = 160;
+            tile.height = 162;
+            tile.x = X_OFFSET + col * 160 + 80 * (row % 2);
             tile.y = Y_OFFSET + row * 120;
             tiles[col].push(tile);
 
@@ -26,7 +27,7 @@ Main.create = function() {
                 print(col, row);
                 tiles.forEach(function(column) {
                     column.forEach(function(e) {
-                        e.tint = 0xffffff;
+                        e.tint = 0xdddddd;
                     });
                 });
                 var adjacentTiles = [];
@@ -45,7 +46,7 @@ Main.create = function() {
                     adjacentTiles.push(tiles[col + 1][row + 1]);
                 }
                 adjacentTiles.forEach(function(e) {
-                    e.tint = 0x00ff00;
+                    e.tint = 0xffffff;
                 });
             }, tile, 0, row, col);
         }

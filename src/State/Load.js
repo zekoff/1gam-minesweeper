@@ -13,6 +13,9 @@ Load.preload = function() {
 
 Load.create = function() {
     game.load.image('pix');
+    game.load.image('grass');
+    game.load.image('trees');
+    game.load.image('rocks');
     game.load.start();
 };
 
