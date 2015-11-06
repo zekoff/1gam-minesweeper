@@ -23,6 +23,7 @@ Main.create = function() {
             tiles[col].push(tile);
 
             tile.inputEnabled = true;
+            tile.input.pixelPerfectClick = true;
             tile.events.onInputUp.add(function(pointer, target, unknown, row, col) {
                 print(col, row);
                 tiles.forEach(function(column) {
