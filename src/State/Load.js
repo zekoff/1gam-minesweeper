@@ -3,6 +3,7 @@
 var Load = {};
 
 Load.preload = function() {
+    game.stage.backgroundColor = 0x303030;
     game.scale.scaleMode = game.device.desktop ?
         Phaser.ScaleManager.SHOW_ALL : Phaser.ScaleManager.EXACT_FIT;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
