@@ -17,8 +17,13 @@ var Player = function(targetTile) {
     });
     targetTile.enemies = [];
     targetTile.setExplored();
+    targetTile.events.onInputUp.dispatch();
+    print(targetTile.getAdjacentTiles().length);
     targetTile.getAdjacentTiles().forEach(function(tile) {
-        tile.setRevealed();
+        tile.setExplored();
+        tile.getAdjacentTiles().forEach(function(inner) {
+            if (inner.state != 'explored') inner.setRevealed();
+        });
     });
 };
 Player.prototype = Object.create(Phaser.Sprite.prototype);

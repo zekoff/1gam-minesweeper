@@ -21,9 +21,9 @@ var GameMap = function() {
 };
 GameMap.prototype = {};
 GameMap.prototype.constructor = GameMap;
-GameMap.prototype.WIDTH = 6;
+GameMap.prototype.WIDTH = 7;
 GameMap.prototype.HEIGHT = 15;
-GameMap.prototype.X_OFFSET = 20;
-GameMap.prototype.Y_OFFSET = 30;
+GameMap.prototype.X_OFFSET = 15;
+GameMap.prototype.Y_OFFSET = 20;
 
 module.exports = GameMap;

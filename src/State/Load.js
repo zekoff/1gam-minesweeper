@@ -17,6 +17,7 @@ Load.create = function() {
     game.load.image('grass');
     game.load.image('trees');
     game.load.image('rocks');
+    game.load.image('crosshair');
     game.load.start();
 };
 

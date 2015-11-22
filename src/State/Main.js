@@ -6,12 +6,6 @@ var Hud = require('../Element/Hud');
 
 var Main = {};
 
-var ROWS = 15;
-var COLUMNS = 6;
-
-var X_OFFSET = 20;
-var Y_OFFSET = 20;
-
 Main.create = function() {
     new GameMap();
     ms.map.tileArray.forEach(function(tile) {
@@ -22,8 +16,12 @@ Main.create = function() {
             new Enemy(tile);
         }
     });
-    new Player(game.rnd.pick(ms.map.tileArray));
     new Hud();
+    new Player(game.rnd.pick(ms.map.tileArray));
+
+    // game.input.onUp.addOnce(function() {
+    //     game.scale.startFullScreen();
+    // });
 };
 
 module.exports = Main;
