@@ -12,6 +12,7 @@ var Tile = function(col, row, type) {
     this.row = row;
     this.x = ms.map.X_OFFSET + col * this.width + (this.width / 2) * (row % 2) + this.width / 2;
     this.y = ms.map.Y_OFFSET + row * this.height * .74 + this.height / 2;
+    if (game.rnd.frac() < .5) this.scale.x *= -1;
 
     this.inputEnabled = true;
     this.input.pixelPerfectClick = true;
@@ -70,7 +71,7 @@ Tile.prototype.getAdjacentTiles = function() {
         adjacentTiles.push(ms.map.tiles[col - 1][row - 1]);
         adjacentTiles.push(ms.map.tiles[col - 1][row + 1]);
     }
-    else if (col < ms.map.WIDTH - 1) {
+    else if (row % 2 !== 0 && col < ms.map.WIDTH - 1) {
         adjacentTiles.push(ms.map.tiles[col + 1][row - 1]);
         adjacentTiles.push(ms.map.tiles[col + 1][row + 1]);
     }
