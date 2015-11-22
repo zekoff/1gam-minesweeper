@@ -17,14 +17,19 @@ var Player = function(targetTile) {
     });
     targetTile.enemies = [];
     targetTile.setExplored();
-    targetTile.events.onInputUp.dispatch();
     print(targetTile.getAdjacentTiles().length);
     targetTile.getAdjacentTiles().forEach(function(tile) {
         tile.setExplored();
         tile.getAdjacentTiles().forEach(function(inner) {
+            if (inner.enemies.length > 0) inner.enemies.forEach(function(enemy){
+                enemy.kill();
+                enemy.destroy();
+            });
+            inner.enemies = [];
             if (inner.state != 'explored') inner.setRevealed();
         });
     });
+    targetTile.events.onInputUp.dispatch();
 };
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
