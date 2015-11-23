@@ -1,4 +1,5 @@
 /* global Phaser, game, ms */
+var Battle = require('../Logic/Battle');
 
 var TILE_SIZE = 140;
 
@@ -19,29 +20,18 @@ var Tile = function(col, row, type) {
     this.events.onInputUp.add(function(sprite, pointer, isOver, row, col) {
         if (isOver === false) return;
         if (ms.markMode) {
-            if (this.state == 'explored') return;
+            if (this.state != 'revealed') return;
             ms.markMode = false;
             this.setMarked(!this.marked);
             return;
         }
         if (!this.reachable) return;
         if (this.marked) return;
-        this.setExplored();
-        ms.player.x = this.x;
-        ms.player.y = this.y;
-        // Resolve combat
-        // Take resources
-        var adjacentTiles = this.getAdjacentTiles();
-        adjacentTiles.forEach(function(e) {
-            if (e.state === 'hidden')
-                e.setRevealed();
-        });
-        var numSurroundingEnemies = adjacentTiles.map(function(tile) {
-            return tile.enemies.length;
-        }).reduce(function(prev, curr) {
-            return prev + curr;
-        });
-        ms.hud.updateSurroundings(numSurroundingEnemies);
+        this.revealEnemies();
+        if (this.enemies.length == 0)
+            ms.player.moveToTile(this);
+        else
+            new Battle(this).begin();
     }, this, 0, row, col);
 
     this.reachable = false;
@@ -82,30 +72,41 @@ Tile.prototype.getAdjacentTiles = function() {
 Tile.prototype.setHidden = function() {
     this.state = 'hidden';
     this.tint = 0x000000;
-    this.enemies.forEach(function(enemy) {
-        enemy.setHidden();
-    });
+    this.hideEnemies();
 };
 Tile.prototype.setRevealed = function() {
     this.state = 'revealed';
     this.tint = 0x808080;
-    this.enemies.forEach(function(enemy) {
-        enemy.setHidden();
-    });
+    this.hideEnemies();
     this.reachable = true;
 };
 Tile.prototype.setExplored = function() {
     this.state = 'explored';
     this.tint = 0xffffff;
-    this.enemies.forEach(function(enemy) {
-        enemy.setRevealed();
-    });
+    this.revealEnemies();
     this.reachable = true;
     this.setMarked(false);
 };
 Tile.prototype.setMarked = function(mark) {
     this.marked = mark;
     this.mark.alpha = this.marked ? 1 : 0;
+};
+Tile.prototype.hideEnemies = function() {
+    this.enemies.forEach(function(enemy) {
+        enemy.setHidden();
+    });
+};
+Tile.prototype.revealEnemies = function() {
+    this.enemies.forEach(function(enemy) {
+        enemy.setRevealed();
+    });
+};
+Tile.prototype.destroyEnemies = function() {
+    this.enemies.forEach(function(enemy) {
+        enemy.kill();
+        enemy.destroy();
+    });
+    this.enemies = [];
 };
 
 module.exports = Tile;

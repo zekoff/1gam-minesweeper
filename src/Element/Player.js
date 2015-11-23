@@ -11,27 +11,38 @@ var Player = function(targetTile) {
     this.x = targetTile.x;
     this.y = targetTile.y;
 
-    if (targetTile.enemies.length > 0) targetTile.enemies.forEach(function(enemy) {
-        enemy.kill();
-        enemy.destroy();
-    });
-    targetTile.enemies = [];
+    if (targetTile.enemies.length > 0) targetTile.destroyEnemies();
     targetTile.setExplored();
-    print(targetTile.getAdjacentTiles().length);
     targetTile.getAdjacentTiles().forEach(function(tile) {
         tile.setExplored();
+        tile.destroyEnemies();
         tile.getAdjacentTiles().forEach(function(inner) {
-            if (inner.enemies.length > 0) inner.enemies.forEach(function(enemy){
-                enemy.kill();
-                enemy.destroy();
-            });
-            inner.enemies = [];
             if (inner.state != 'explored') inner.setRevealed();
         });
     });
     targetTile.events.onInputUp.dispatch();
+    this.currentTile = targetTile;
 };
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
+Player.prototype.moveToTile = function(tile) {
+    this.x = tile.x;
+    this.y = tile.y;
+    // TODO Incur tile effect
+    tile.setExplored();
+    // TODO Take resources
+    var adjacentTiles = tile.getAdjacentTiles();
+    adjacentTiles.forEach(function(e) {
+        if (e.state === 'hidden')
+            e.setRevealed();
+    });
+    var numSurroundingEnemies = adjacentTiles.map(function(tile) {
+        return tile.enemies.length;
+    }).reduce(function(prev, curr) {
+        return prev + curr;
+    });
+    ms.hud.updateSurroundings(numSurroundingEnemies);
+    this.currentTile = tile;
+};
 
 module.exports = Player;

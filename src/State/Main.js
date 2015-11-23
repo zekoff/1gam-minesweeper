@@ -22,6 +22,7 @@ Main.create = function() {
     // game.input.onUp.addOnce(function() {
     //     game.scale.startFullScreen();
     // });
+    game.world.bringToTop(ms.hud.wrapper);
 };
 
 module.exports = Main;
