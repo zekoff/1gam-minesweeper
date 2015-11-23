@@ -6,7 +6,6 @@ Implementing battles.
 
 ## Todo
 
-- Create text window for battle display
 - Implement battles
 - Make firing on marked targets do damage, etc.
 - Make firing on empty tiles destroy resources, etc.

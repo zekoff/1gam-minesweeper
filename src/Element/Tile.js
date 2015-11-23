@@ -21,7 +21,6 @@ var Tile = function(col, row, type) {
         if (isOver === false) return;
         if (ms.markMode) {
             if (this.state != 'revealed') return;
-            ms.markMode = false;
             this.setMarked(!this.marked);
             return;
         }

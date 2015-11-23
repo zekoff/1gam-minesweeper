@@ -27,8 +27,10 @@ var Hud = function() {
     this.markButton.anchor.set(0.5);
     this.markButton.inputEnabled = true;
     this.markButton.events.onInputUp.add(function() {
-        ms.markMode = true;
-    });
+        if (ms.markMode) this.markButton.fill = 'red';
+        else this.markButton.fill = 'white';
+        ms.markMode = !ms.markMode;
+    }, this);
     this.add(this.markButton);
 
     this.launchButton = game.add.text(720, 1600, "FIRE", {
@@ -80,8 +82,8 @@ var Hud = function() {
     battleBackground.inputEnabled = true;
     battleBackground.events.onInputUp.add(function() {
         // ms.battle.victory();
-        this.addText("You did " + game.rnd.between(10,20) + " damage!");
-        this.addText("The enemy did " + game.rnd.between(10,20) + " damage...");
+        this.addText("You did " + game.rnd.between(10, 20) + " damage!");
+        this.addText("The enemy did " + game.rnd.between(10, 20) + " damage...");
     }, this);
     var winButton = game.add.image(20, 2800, 'pix');
     winButton.width = 1040;
