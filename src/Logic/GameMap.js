@@ -1,5 +1,5 @@
 /* global game, ms */
-var Tile = require('./Tile');
+var Tile = require('../Element/Tile');
 
 var GameMap = function() {
     ms.map = this;

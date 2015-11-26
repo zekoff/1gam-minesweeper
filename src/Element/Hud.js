@@ -61,11 +61,11 @@ var Hud = function() {
     battleBackground.height = 1440;
     this.add(battleBackground);
 
-    var hpBar = game.add.image(20, 1700, 'pix');
-    hpBar.tint = 0x00ff00;
-    hpBar.width = 1040;
-    hpBar.height = 80;
-    this.add(hpBar);
+    this.hpBar = game.add.image(20, 1700, 'pix');
+    this.hpBar.tint = 0x00ff00;
+    this.hpBar.width = 1040;
+    this.hpBar.height = 80;
+    this.add(this.hpBar);
     var mpBar = game.add.image(20, 1800, 'pix');
     mpBar.tint = 0x0000ff;
     mpBar.width = 1040;
@@ -90,9 +90,9 @@ var Hud = function() {
     winButton.height = 200;
     winButton.inputEnabled = true;
     winButton.events.onInputUp.add(function() {
-        ms.battle.victory();
+        ms.battle.playerAction('testing');
     });
-    winButton.tint = 0x00ff00;
+    winButton.tint = 0x008000;
     this.add(winButton);
     // XXX end debug only
 };

@@ -1,4 +1,4 @@
-/* global Phaser, game */
+/* global Phaser, game, ms */
 
 var Enemy = function(targetTile) {
     Phaser.Sprite.call(this, game, 0, 0, 'pix');
@@ -7,6 +7,7 @@ var Enemy = function(targetTile) {
     this.tint = 0xff0000;
     this.height = 60;
     this.width = 60;
+    this.hp = 55;
     this.x = targetTile.x;
     this.y = targetTile.y;
     targetTile.enemies.push(this);
@@ -19,6 +20,16 @@ Enemy.prototype.setHidden = function() {
 };
 Enemy.prototype.setRevealed = function() {
     this.alpha = 1;
+};
+Enemy.prototype.getAction = function() {
+    var damage = game.rnd.between(5, 10);
+    return {
+        text: "The enemy does " + damage + " points of damage...",
+        action: ms.player.damage.bind(ms.player, damage)
+    };
+};
+Enemy.prototype.damage = function(damage) {
+    this.hp -= damage;
 };
 
 module.exports = Enemy;
