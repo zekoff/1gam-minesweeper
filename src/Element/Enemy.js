@@ -7,7 +7,7 @@ var Enemy = function(targetTile) {
     this.tint = 0xff0000;
     this.height = 60;
     this.width = 60;
-    this.hp = 105;
+    this.hp = 50;
     this.x = targetTile.x;
     this.y = targetTile.y;
     targetTile.enemies.push(this);

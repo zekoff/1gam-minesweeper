@@ -5,9 +5,8 @@
 
 ## Todo
 
-- Make firing on marked targets do damage, etc.
 - Make firing on empty tiles destroy resources, etc.
-- Limit number of marked targets based on resources
+- Limit number of marked targets based on resources; make firing cost resources
 - Move player to adjacent tile before exploring a new tile
 - If in targeting mode, still allow player to move to explored/empty tiles. This
 may involve editing the state machine so that once a tile is explored it is

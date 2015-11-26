@@ -29,31 +29,31 @@ Battle.prototype.playerAction = function(action) {
     switch (action) {
         case 'blast':
             if (ms.player.mp >= 1) {
-                playerText = "You blast the target with plasma for 50 damage!";
+                playerText = "You blast the target with plasma for 20 damage!";
                 playerFunction = function() {
-                    target.damage(70);
+                    target.damage(20);
                     ms.player.adjustMp(-1);
                 };
             }
             else
-                playerText = "You activate your plasma blaster, but don't have enough energy..."
+                playerText = "You activate your plasma blaster, but don't have enough energy...";
             break;
         case 'leech':
             playerText = "You leech energy from the target to restore your plasma reserves.";
             playerFunction = function() {
-                target.damage(10);
+                target.damage(5);
                 ms.player.adjustMp(5);
             };
             break;
         case 'shield':
             if (ms.player.mp > 2) {
-                playerText = "You wrap yourself in a plasma shield, nullifying damage this turn.";
+                playerText = "You activate your auto-repair systems, healing 30 damage.";
                 playerFunction = function() {
                     ms.player.adjustMp(-2);
                     ms.player.adjustHp(30);
                 };
             }
-            else playerText = "You turn on your shield generator, but don't have enough energy...";
+            else playerText = "You turn on your auto-repair systems, but don't have enough energy...";
             break;
         default:
             var damage = game.rnd.between(10, 20);

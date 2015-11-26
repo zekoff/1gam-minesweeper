@@ -40,12 +40,13 @@ var Hud = function() {
     this.launchButton.anchor.set(0.5);
     this.launchButton.inputEnabled = true;
     this.launchButton.events.onInputUp.add(function() {
-        print('firing');
         ms.map.tileArray.forEach(function(tile) {
             if (tile.marked) {
                 tile.setMarked(false);
                 tile.revealEnemies();
-                // TODO damage enemies
+                tile.enemies.forEach(function(enemy) {
+                    enemy.damage(25);
+                });
             }
             else {
                 // TODO damage tile, remove resources, etc.
