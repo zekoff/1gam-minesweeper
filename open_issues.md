@@ -2,11 +2,9 @@
 
 ## Currently working
 
-Implementing battles.
 
 ## Todo
 
-- Implement battles
 - Make firing on marked targets do damage, etc.
 - Make firing on empty tiles destroy resources, etc.
 - Limit number of marked targets based on resources
@@ -16,6 +14,10 @@ may involve editing the state machine so that once a tile is explored it is
 guaranteed to have nothing else of interest in it.
 - Apply gradient to battle text, or other method of showing bottom-to-top output
 - Add a bunch more variety to battle text
+- Improve battle intro animations (sliding panels)
+- Add enemy and player attack animations, flying damage numbers
+- Add additional enemy behavior
+- Tune difficulty and combat numbers to account for map layer and resource pickup
 
 ## Bugs
 

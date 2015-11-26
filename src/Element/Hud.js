@@ -162,9 +162,17 @@ Hud.prototype.startBattleMode = function() {
 
     this.inputMask.inputEnabled = true;
     this.inputMask.alpha = 0.4;
-    this.y = -1200;
+    // this.y = -1200;
     this.markButton.x = -540;
     this.launchButton.x = 1080 + 540;
+
+    // animate
+    ms.inputMask.inputEnabled = true;
+    game.add.tween(this).to({
+        y: -1200
+    }, 500, Phaser.Easing.Quadratic.Out, true).onComplete.add(function() {
+        ms.inputMask.inputEnabled = false;
+    });
 };
 Hud.prototype.endBattleMode = function() {
     this.playerPlatform.destroy();
@@ -173,9 +181,14 @@ Hud.prototype.endBattleMode = function() {
     this.enemyDisplay.destroy();
     this.inputMask.inputEnabled = false;
     this.inputMask.alpha = 0;
-    this.y = 0;
     this.markButton.x = 360;
     this.launchButton.x = 720;
+    ms.inputMask.inputEnabled = true;
+    game.add.tween(this).to({
+        y: 0
+    }, 500, Phaser.Easing.Quadratic.Out, true).onComplete.add(function() {
+        ms.inputMask.inputEnabled = false;
+    });
 };
 Hud.prototype.addText = function(text, color) {
     this.text.push(text);
