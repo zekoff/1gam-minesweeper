@@ -66,11 +66,11 @@ var Hud = function() {
     this.hpBar.width = 1040;
     this.hpBar.height = 80;
     this.add(this.hpBar);
-    var mpBar = game.add.image(20, 1800, 'pix');
-    mpBar.tint = 0x0000ff;
-    mpBar.width = 1040;
-    mpBar.height = 80;
-    this.add(mpBar);
+    this.mpBar = game.add.image(20, 1800, 'pix');
+    this.mpBar.tint = 0x0000ff;
+    this.mpBar.width = 1040;
+    this.mpBar.height = 80;
+    this.add(this.mpBar);
 
     this.textArea = game.add.image(20, 1940, 'pix');
     this.textArea.width = 1040;
@@ -79,22 +79,53 @@ var Hud = function() {
     this.add(this.textArea);
 
     // XXX debug only
-    battleBackground.inputEnabled = true;
-    battleBackground.events.onInputUp.add(function() {
-        // ms.battle.victory();
-        this.addText("You did " + game.rnd.between(10, 20) + " damage!");
-        this.addText("The enemy did " + game.rnd.between(10, 20) + " damage...");
-    }, this);
-    var winButton = game.add.image(20, 2800, 'pix');
-    winButton.width = 1040;
-    winButton.height = 200;
-    winButton.inputEnabled = true;
-    winButton.events.onInputUp.add(function() {
-        ms.battle.playerAction('testing');
-    });
-    winButton.tint = 0x008000;
-    this.add(winButton);
+    // battleBackground.inputEnabled = true;
+    // battleBackground.events.onInputUp.add(function() {
+    //     // ms.battle.victory();
+    //     this.addText("You did " + game.rnd.between(10, 20) + " damage!");
+    //     this.addText("The enemy did " + game.rnd.between(10, 20) + " damage...");
+    // }, this);
+    // var winButton = game.add.image(20, 2800, 'pix');
+    // winButton.width = 1040;
+    // winButton.height = 200;
+    // winButton.inputEnabled = true;
+    // winButton.events.onInputUp.add(function() {
+    //     ms.battle.playerAction('testing');
+    // });
+    // winButton.tint = 0x008000;
+    // this.add(winButton);
     // XXX end debug only
+
+    this.blastButton = game.add.image(40, 2660, 'pix');
+    this.blastButton.width = 320;
+    this.blastButton.height = 440;
+    this.blastButton.inputEnabled = true;
+    this.blastButton.events.onInputUp.add(function() {
+        ms.battle.playerAction('blast');
+    });
+    this.blastButton.tint = 0x008000;
+    this.add(this.blastButton);
+
+    this.leechButton = game.add.image(40 + 320 + 20, 2660, 'pix');
+    this.leechButton.width = 320;
+    this.leechButton.height = 440;
+    this.leechButton.inputEnabled = true;
+    this.leechButton.events.onInputUp.add(function() {
+        ms.battle.playerAction('leech');
+    });
+    this.leechButton.tint = 0x008000;
+    this.add(this.leechButton);
+
+    this.shieldButton = game.add.image(40 + 320 + 20 + 320 + 20, 2660, 'pix');
+    this.shieldButton.width = 320;
+    this.shieldButton.height = 440;
+    this.shieldButton.inputEnabled = true;
+    this.shieldButton.events.onInputUp.add(function() {
+        ms.battle.playerAction('shield');
+    });
+    this.shieldButton.tint = 0x008000;
+    this.add(this.shieldButton);
+
 };
 Hud.prototype = Object.create(Phaser.Group.prototype);
 Hud.prototype.constructor = Hud;
@@ -151,11 +182,11 @@ Hud.prototype.addText = function(text, color) {
     if (typeof color === 'undefined') color = 0x000000;
     if (this.content)
         this.content.destroy();
-    this.content = game.make.bitmapText(30, 2620, 'font', this.text.join('\n'), 60);
+    this.content = game.make.bitmapText(30, 2620, 'font', this.text.join('\n'), 48);
     this.content.anchor.set(0, 1);
     this.content.maxWidth = 1020;
     this.content.tint = 0xcc8080;
-    while (this.content.height > this.textArea.height) {
+    while (this.content.height > this.textArea.height - 40) {
         this.text.shift();
         this.content.setText(this.text.join('\n'));
     }

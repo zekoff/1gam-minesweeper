@@ -8,7 +8,8 @@ var Player = function(targetTile) {
     this.tint = 0x0000ff;
     this.height = 70;
     this.width = 40;
-    this.hp = 100;
+    this.maxHp = this.hp = 100;
+    this.maxMp = this.mp = 5;
     this.x = targetTile.x;
     this.y = targetTile.y;
 
@@ -45,9 +46,19 @@ Player.prototype.moveToTile = function(tile) {
     ms.hud.updateSurroundings(numSurroundingEnemies);
     this.currentTile = tile;
 };
-Player.prototype.damage = function(damage) {
-    ms.hud.hpBar.width = 1040 * (this.hp / 100);
-    this.hp -= damage;
+Player.prototype.adjustHp = function(amount) {
+    this.hp += amount;
+    if (this.hp > this.maxHp) this.hp = this.maxHp;
+    this.updateBars();
+};
+Player.prototype.adjustMp = function(amount) {
+    this.mp += amount;
+    if (this.mp > this.maxMp) this.mp = this.maxMp;
+    this.updateBars();
+};
+Player.prototype.updateBars = function() {
+    ms.hud.hpBar.width = 1040 * (this.hp / this.maxHp);
+    ms.hud.mpBar.width = 1040 * (this.mp / this.maxMp);
 };
 
 module.exports = Player;

@@ -15,6 +15,9 @@ Implementing battles.
 may involve editing the state machine so that once a tile is explored it is
 guaranteed to have nothing else of interest in it.
 - Apply gradient to battle text, or other method of showing bottom-to-top output
+- Add a bunch more variety to battle text
 
 ## Bugs
 
+- Combat text is cut off at the bottom for lines that almost fit when font size
+is 60.

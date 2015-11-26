@@ -7,7 +7,7 @@ var Enemy = function(targetTile) {
     this.tint = 0xff0000;
     this.height = 60;
     this.width = 60;
-    this.hp = 55;
+    this.hp = 105;
     this.x = targetTile.x;
     this.y = targetTile.y;
     targetTile.enemies.push(this);
@@ -22,10 +22,10 @@ Enemy.prototype.setRevealed = function() {
     this.alpha = 1;
 };
 Enemy.prototype.getAction = function() {
-    var damage = game.rnd.between(5, 10);
+    var damage = game.rnd.between(5, 15);
     return {
-        text: "The enemy does " + damage + " points of damage...",
-        action: ms.player.damage.bind(ms.player, damage)
+        text: "The enemy does " + damage + " points of damage.",
+        action: ms.player.adjustHp.bind(ms.player, -damage)
     };
 };
 Enemy.prototype.damage = function(damage) {
