@@ -40,7 +40,12 @@ var Hud = function() {
     this.launchButton.anchor.set(0.5);
     this.launchButton.inputEnabled = true;
     this.launchButton.events.onInputUp.add(function() {
-        ms.map.tileArray.forEach(function(tile) {
+        var shuffledTiles = Phaser.ArrayUtils.shuffle(ms.map.tileArray.filter(function(tile) {
+            return tile.marked;
+        }).slice());
+        var tile;
+        for (var i = 0; i < ms.player.mp; i++) {
+            tile = shuffledTiles[i];
             if (tile.marked) {
                 tile.setMarked(false);
                 tile.revealEnemies();
@@ -52,7 +57,8 @@ var Hud = function() {
                 // TODO damage tile, remove resources, etc.
             }
             tile.marked = false;
-        });
+        }
+        ms.player.adjustMp(-ms.player.mp);
     });
     this.add(this.launchButton);
 

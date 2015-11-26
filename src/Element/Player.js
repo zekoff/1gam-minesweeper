@@ -54,6 +54,7 @@ Player.prototype.adjustHp = function(amount) {
 Player.prototype.adjustMp = function(amount) {
     this.mp += amount;
     if (this.mp > this.maxMp) this.mp = this.maxMp;
+    if (this.mp < 0) this.mp = 0;
     this.updateBars();
 };
 Player.prototype.updateBars = function() {
