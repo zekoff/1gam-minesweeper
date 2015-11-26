@@ -23,15 +23,15 @@ Battle.prototype.defeat = function() {
 };
 Battle.prototype.playerAction = function(action) {
     ms.inputMask.inputEnabled = true;
-    var playerText, playerFunction;
+    var playerText, playerFunction, damage;
     var target = this.targetedEnemy;
-    // switch based on action taken
     switch (action) {
         case 'blast':
             if (ms.player.mp >= 1) {
-                playerText = "You blast the target with plasma for 20 damage!";
+                damage = game.rnd.between(15, 25);
+                playerText = "You blast the target with plasma for " + damage + " damage!";
                 playerFunction = function() {
-                    target.damage(20);
+                    target.damage(damage);
                     ms.player.adjustMp(-1);
                 };
             }
@@ -39,26 +39,23 @@ Battle.prototype.playerAction = function(action) {
                 playerText = "You activate your plasma blaster, but don't have enough energy...";
             break;
         case 'leech':
-            playerText = "You leech energy from the target to restore your plasma reserves.";
+            damage = game.rnd.between(3, 7);
+            playerText = "You leech energy from the target, doing " + damage + " and restoring your plasma reserves.";
             playerFunction = function() {
-                target.damage(5);
+                target.damage(damage);
                 ms.player.adjustMp(5);
             };
             break;
         case 'shield':
-            if (ms.player.mp > 2) {
-                playerText = "You activate your auto-repair systems, healing 30 damage.";
+            if (ms.player.mp >= 2) {
+                damage = game.rnd.between(20, 40);
+                playerText = "You activate your auto-repair systems, healing " + damage + " damage.";
                 playerFunction = function() {
                     ms.player.adjustMp(-2);
-                    ms.player.adjustHp(30);
+                    ms.player.adjustHp(damage);
                 };
             }
             else playerText = "You turn on your auto-repair systems, but don't have enough energy...";
-            break;
-        default:
-            var damage = game.rnd.between(10, 20);
-            playerText = "You blast the enemy for " + damage + " damage!";
-            playerFunction = this.targetedEnemy.damage.bind(this.targetedEnemy, damage);
             break;
     }
     // TODO show animation

@@ -79,24 +79,6 @@ var Hud = function() {
     this.textArea.tint = 0xffffff;
     this.add(this.textArea);
 
-    // XXX debug only
-    // battleBackground.inputEnabled = true;
-    // battleBackground.events.onInputUp.add(function() {
-    //     // ms.battle.victory();
-    //     this.addText("You did " + game.rnd.between(10, 20) + " damage!");
-    //     this.addText("The enemy did " + game.rnd.between(10, 20) + " damage...");
-    // }, this);
-    // var winButton = game.add.image(20, 2800, 'pix');
-    // winButton.width = 1040;
-    // winButton.height = 200;
-    // winButton.inputEnabled = true;
-    // winButton.events.onInputUp.add(function() {
-    //     ms.battle.playerAction('testing');
-    // });
-    // winButton.tint = 0x008000;
-    // this.add(winButton);
-    // XXX end debug only
-
     this.blastButton = game.add.image(40, 2660, 'pix');
     this.blastButton.width = 320;
     this.blastButton.height = 440;

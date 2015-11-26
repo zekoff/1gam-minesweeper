@@ -20,6 +20,10 @@ var Tile = function(col, row, type) {
     this.events.onInputUp.add(function(sprite, pointer, isOver, row, col) {
         if (isOver === false) return;
         if (ms.markMode) {
+            if (this.state == 'explored') {
+                ms.player.moveToTile(this);
+                return;
+            }
             if (this.state != 'revealed') return;
             this.setMarked(!this.marked);
             return;
