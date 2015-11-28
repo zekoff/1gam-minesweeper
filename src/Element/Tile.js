@@ -40,12 +40,24 @@ var Tile = function(col, row, type) {
     this.reachable = false;
     this.state = 'explored';
     this.enemies = [];
+    this.marked = false;
+    this.destroyed = false;
 
     this.mark = game.add.image(this.x, this.y, 'crosshair');
     this.mark.anchor.set(0.5);
     this.mark.alpha = 0;
     this.mark.tint = 0xff0000;
     this.mark.width = this.mark.height = TILE_SIZE * .5;
+
+    this.flame = game.add.image(this.x, this.y, 'flame');
+    this.flame.anchor.set(0.5);
+    this.flame.alpha = 0;
+    this.flame.width = this.flame.height = TILE_SIZE * .5;
+
+    this.resources = {
+        hp: 5,
+        mp: 1
+    };
 };
 Tile.prototype = Object.create(Phaser.Sprite.prototype);
 Tile.prototype.constructor = Tile;
@@ -89,10 +101,17 @@ Tile.prototype.setExplored = function() {
     this.revealEnemies();
     this.reachable = true;
     this.setMarked(false);
+    this.setDestroyed(false);
+    this.resources = null;
 };
 Tile.prototype.setMarked = function(mark) {
     this.marked = mark;
     this.mark.alpha = this.marked ? 1 : 0;
+};
+Tile.prototype.setDestroyed = function(flame) {
+    this.destroyed = flame;
+    this.flame.alpha = flame ? 1 : 0;
+    this.resources = null;
 };
 Tile.prototype.hideEnemies = function() {
     this.enemies.forEach(function(enemy) {

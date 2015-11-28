@@ -18,6 +18,7 @@ Load.create = function() {
     game.load.image('trees');
     game.load.image('rocks');
     game.load.image('crosshair');
+    game.load.image('flame');
     game.load.bitmapFont('font', 'font.png', 'font.fnt');
     game.load.start();
 };

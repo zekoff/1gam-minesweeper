@@ -30,9 +30,12 @@ Player.prototype.constructor = Player;
 Player.prototype.moveToTile = function(tile) {
     this.x = tile.x;
     this.y = tile.y;
-    // TODO Incur tile effect
+    if (tile.destroyed) this.adjustHp(-15);
+    if (tile.resources) {
+        this.adjustHp(tile.resources.hp);
+        this.adjustMp(tile.resources.mp);
+    }
     tile.setExplored();
-    // TODO Take resources
     var adjacentTiles = tile.getAdjacentTiles();
     adjacentTiles.forEach(function(e) {
         if (e.state === 'hidden')
@@ -47,11 +50,14 @@ Player.prototype.moveToTile = function(tile) {
     this.currentTile = tile;
 };
 Player.prototype.adjustHp = function(amount) {
+    if (!amount) return;
     this.hp += amount;
     if (this.hp > this.maxHp) this.hp = this.maxHp;
     this.updateBars();
+    // TODO if HP < 0, trigger a loss
 };
 Player.prototype.adjustMp = function(amount) {
+    if (!amount) return;
     this.mp += amount;
     if (this.mp > this.maxMp) this.mp = this.maxMp;
     if (this.mp < 0) this.mp = 0;

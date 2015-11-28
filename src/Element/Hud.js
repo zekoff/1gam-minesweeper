@@ -46,8 +46,8 @@ var Hud = function() {
         var tile;
         for (var i = 0; i < ms.player.mp; i++) {
             tile = shuffledTiles[i];
-            if (tile.marked) {
-                tile.setMarked(false);
+            tile.setMarked(false);
+            if (tile.enemies.length > 0) {
                 tile.revealEnemies();
                 tile.enemies.forEach(function(enemy) {
                     enemy.damage(25);
@@ -55,6 +55,7 @@ var Hud = function() {
             }
             else {
                 // TODO damage tile, remove resources, etc.
+                tile.setDestroyed(true);
             }
             tile.marked = false;
         }
