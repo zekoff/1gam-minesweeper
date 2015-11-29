@@ -44,7 +44,8 @@ var Hud = function() {
             return tile.marked;
         }).slice());
         var tile;
-        for (var i = 0; i < ms.player.mp; i++) {
+        var shots = Math.min(ms.player.mp, shuffledTiles.length);
+        for (var i = 0; i < shots; i++) {
             tile = shuffledTiles[i];
             tile.setMarked(false);
             if (tile.enemies.length > 0) {
@@ -59,7 +60,7 @@ var Hud = function() {
             }
             tile.marked = false;
         }
-        ms.player.adjustMp(-ms.player.mp);
+        ms.player.adjustMp(-shots);
     });
     this.add(this.launchButton);
 
