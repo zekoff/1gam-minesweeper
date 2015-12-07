@@ -12,14 +12,19 @@ Battle.prototype.begin = function() {
     ms.hud.startBattleMode();
 };
 Battle.prototype.victory = function() {
-    // TODO display battle results
     this.battleTile.destroyEnemies();
     ms.hud.endBattleMode();
     ms.player.moveToTile(this.battleTile);
     ms.battle = null;
+    var numEnemies = ms.map.tileArray.map(function(e) {
+        return e.enemies.length;
+    }).reduce(function(prev, curr) {
+        return prev + curr;
+    });
+    if (numEnemies == 0) game.state.start('GameOver', true, false, 'You Win!');
 };
 Battle.prototype.defeat = function() {
-    print('you lose...');
+    game.state.start('GameOver', true, false, 'You Lose...');
 };
 Battle.prototype.playerAction = function(action) {
     ms.inputMask.inputEnabled = true;

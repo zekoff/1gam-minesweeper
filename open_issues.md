@@ -5,10 +5,8 @@
 ## Wrap-up todo
 
 - Replace placeholder enemy and player graphics
-- Create adjacent enemy UI element (three-segment round display)
 - Tune numbers so that a reasonable challenge is provided (create spreadsheet?)
-- Add title screen and win/loss conditions
-- Set fullscreen on input
+- Add title screen graphic
 
 ## Todo
 

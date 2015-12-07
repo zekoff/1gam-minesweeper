@@ -12,16 +12,16 @@ Main.create = function() {
         tile.setHidden();
     });
     ms.map.tileArray.forEach(function(tile) {
-        if (game.rnd.frac() < .35) {
+        if (game.rnd.frac() < .05) {
             new Enemy(tile);
         }
     });
     new Hud();
     new Player(game.rnd.pick(ms.map.tileArray));
 
-    // game.input.onUp.addOnce(function() {
-    //     game.scale.startFullScreen();
-    // });
+    game.input.onUp.add(function() {
+        game.scale.startFullScreen();
+    });
     game.world.bringToTop(ms.hud.wrapper);
     ms.inputMask = game.add.image(0, 0, 'pix');
     ms.inputMask.width = 1080;
