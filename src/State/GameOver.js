@@ -7,7 +7,6 @@ GameOver.init = function(text) {
 };
 
 GameOver.create = function() {
-    // TODO add background
     var text = game.add.text(540, 600, this.text, {
         fontSize: 80,
         fill: 'white'

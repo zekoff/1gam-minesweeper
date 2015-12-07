@@ -25,6 +25,7 @@ var Tile = function(col, row, type) {
                 return;
             }
             if (this.state != 'revealed') return;
+            if (this.enemiesRevealed) return;
             this.setMarked(!this.marked);
             return;
         }
@@ -42,6 +43,7 @@ var Tile = function(col, row, type) {
     this.enemies = [];
     this.marked = false;
     this.destroyed = false;
+    this.enemiesRevealed = false;
 
     this.mark = game.add.image(this.x, this.y, 'crosshair');
     this.mark.anchor.set(0.5);
@@ -114,11 +116,13 @@ Tile.prototype.setDestroyed = function(flame) {
     this.resources = null;
 };
 Tile.prototype.hideEnemies = function() {
+    this.enemiesRevealed = false;
     this.enemies.forEach(function(enemy) {
         enemy.setHidden();
     });
 };
 Tile.prototype.revealEnemies = function() {
+    this.enemiesRevealed = true;
     this.enemies.forEach(function(enemy) {
         enemy.setRevealed();
     });
