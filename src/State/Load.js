@@ -24,6 +24,7 @@ Load.create = function() {
     game.load.image('leech_icon');
     game.load.image('human');
     game.load.image('skeleton');
+    game.load.image('title_image');
     game.load.bitmapFont('font', 'font.png', 'font.fnt');
     game.load.start();
 };

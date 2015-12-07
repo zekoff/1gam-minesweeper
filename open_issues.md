@@ -4,8 +4,6 @@
 
 ## Wrap-up todo
 
-- Add title screen graphic
-
 ## Todo
 
 - Make firing on empty tiles destroy resources, etc.

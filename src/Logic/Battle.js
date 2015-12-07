@@ -37,7 +37,7 @@ Battle.prototype.playerAction = function(action) {
                 playerText = "You attack the enemy with your flame sword for " + damage + " damage!";
                 playerFunction = function() {
                     target.damage(damage);
-                    ms.player.adjustMp(-1);
+                    ms.player.adjustMp(-2);
                 };
             }
             else
@@ -52,15 +52,15 @@ Battle.prototype.playerAction = function(action) {
             };
             break;
         case 'shield':
-            if (ms.player.mp >= 2) {
-                damage = game.rnd.between(20, 40);
-                playerText = "You cast your healing spell, healing " + damage + " damage.";
+            if (ms.player.mp >= 1) {
+                damage = game.rnd.between(5, 10) * ms.player.mp;
+                playerText = "You cast your healing spell with all remaining MP, healing " + damage + " damage.";
                 playerFunction = function() {
-                    ms.player.adjustMp(-2);
+                    ms.player.adjustMp(-ms.player.mp);
                     ms.player.adjustHp(damage);
                 };
             }
-            else playerText = "You try to cast a heal, but don't have enough MP...";
+            else playerText = "You try to cast a heal, but don't have any MP...";
             break;
     }
     // TODO show animation

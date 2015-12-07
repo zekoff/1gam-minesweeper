@@ -60,7 +60,7 @@ var Hud = function() {
             }
             tile.marked = false;
         }
-        ms.player.adjustMp(-shots);
+        ms.player.adjustMp(-shots * 2);
     });
     this.add(this.launchButton);
 

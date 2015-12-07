@@ -57,7 +57,7 @@ var Tile = function(col, row, type) {
     this.flame.width = this.flame.height = TILE_SIZE * .5;
 
     this.resources = {
-        hp: 5,
+        hp: 10,
         mp: 1
     };
 };

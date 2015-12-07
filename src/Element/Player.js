@@ -9,7 +9,7 @@ var Player = function(targetTile) {
     this.height = 100;
     this.width = 100;
     this.maxHp = this.hp = 100;
-    this.maxMp = this.mp = 5;
+    this.maxMp = this.mp = 10;
     this.x = targetTile.x;
     this.y = targetTile.y;
 
