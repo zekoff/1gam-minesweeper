@@ -19,6 +19,9 @@ Load.create = function() {
     game.load.image('rocks');
     game.load.image('crosshair');
     game.load.image('flame');
+    game.load.image('attack_icon');
+    game.load.image('heal_icon');
+    game.load.image('leech_icon');
     game.load.bitmapFont('font', 'font.png', 'font.fnt');
     game.load.start();
 };

@@ -29,18 +29,18 @@ Battle.prototype.playerAction = function(action) {
         case 'blast':
             if (ms.player.mp >= 1) {
                 damage = game.rnd.between(15, 25);
-                playerText = "You blast the target with plasma for " + damage + " damage!";
+                playerText = "You attack the enemy with your flame sword for " + damage + " damage!";
                 playerFunction = function() {
                     target.damage(damage);
                     ms.player.adjustMp(-1);
                 };
             }
             else
-                playerText = "You activate your plasma blaster, but don't have enough energy...";
+                playerText = "You try to activate your flame sword, but don't have enough MP...";
             break;
         case 'leech':
             damage = game.rnd.between(3, 7);
-            playerText = "You leech energy from the target, doing " + damage + " and restoring your plasma reserves.";
+            playerText = "You leech energy from the target, doing " + damage + " damage and restoring your MP.";
             playerFunction = function() {
                 target.damage(damage);
                 ms.player.adjustMp(5);
@@ -49,13 +49,13 @@ Battle.prototype.playerAction = function(action) {
         case 'shield':
             if (ms.player.mp >= 2) {
                 damage = game.rnd.between(20, 40);
-                playerText = "You activate your auto-repair systems, healing " + damage + " damage.";
+                playerText = "You cast your healing spell, healing " + damage + " damage.";
                 playerFunction = function() {
                     ms.player.adjustMp(-2);
                     ms.player.adjustHp(damage);
                 };
             }
-            else playerText = "You turn on your auto-repair systems, but don't have enough energy...";
+            else playerText = "You try to cast a heal, but don't have enough MP...";
             break;
     }
     // TODO show animation

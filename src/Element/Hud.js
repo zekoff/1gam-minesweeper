@@ -96,6 +96,9 @@ var Hud = function() {
     });
     this.blastButton.tint = 0x008000;
     this.add(this.blastButton);
+    var blastIcon = game.make.image(120, 2700, 'attack_icon');
+    blastIcon.height = blastIcon.width = 200;
+    this.add(blastIcon);
 
     this.leechButton = game.add.image(40 + 320 + 20, 2660, 'pix');
     this.leechButton.width = 320;
@@ -106,6 +109,9 @@ var Hud = function() {
     });
     this.leechButton.tint = 0x008000;
     this.add(this.leechButton);
+    var leechIcon = game.make.image(40+ 320 + 20 + 80, 2700, 'leech_icon');
+    leechIcon.height = leechIcon.width = 200;
+    this.add(leechIcon);
 
     this.shieldButton = game.add.image(40 + 320 + 20 + 320 + 20, 2660, 'pix');
     this.shieldButton.width = 320;
@@ -116,7 +122,9 @@ var Hud = function() {
     });
     this.shieldButton.tint = 0x008000;
     this.add(this.shieldButton);
-
+    var healIcon = game.make.image(40+320+20+320+20+80, 2700,'heal_icon');
+    healIcon.height = healIcon.width = 200;
+    this.add(healIcon);
 };
 Hud.prototype = Object.create(Phaser.Group.prototype);
 Hud.prototype.constructor = Hud;
