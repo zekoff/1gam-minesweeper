@@ -12,7 +12,7 @@ Main.create = function() {
         tile.setHidden();
     });
     ms.map.tileArray.forEach(function(tile) {
-        if (game.rnd.frac() < .05) {
+        if (game.rnd.frac() < .35) {
             new Enemy(tile);
         }
     });

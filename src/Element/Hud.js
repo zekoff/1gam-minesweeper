@@ -142,7 +142,7 @@ Hud.prototype.startBattleMode = function() {
     this.playerPlatform.height = 300;
     this.playerPlatform.width = 500;
     this.add(this.playerPlatform);
-    this.playerDisplay = game.add.image(270, 1440, 'pix');
+    this.playerDisplay = game.add.image(270, 1440, 'human');
     this.playerDisplay.anchor.set(0.5, 1);
     this.playerDisplay.width = ms.player.width * 2;
     this.playerDisplay.height = ms.player.height * 2;
@@ -153,7 +153,7 @@ Hud.prototype.startBattleMode = function() {
     this.enemyPlatform.height = 300;
     this.enemyPlatform.width = 500;
     this.add(this.enemyPlatform);
-    this.enemyDisplay = game.add.image(810, 1440, 'pix');
+    this.enemyDisplay = game.add.image(810, 1440, 'skeleton');
     this.enemyDisplay.anchor.set(0.5, 1);
     this.enemyDisplay.width = ms.player.width * 2;
     this.enemyDisplay.height = ms.player.height * 2;

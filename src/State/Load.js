@@ -22,6 +22,8 @@ Load.create = function() {
     game.load.image('attack_icon');
     game.load.image('heal_icon');
     game.load.image('leech_icon');
+    game.load.image('human');
+    game.load.image('skeleton');
     game.load.bitmapFont('font', 'font.png', 'font.fnt');
     game.load.start();
 };

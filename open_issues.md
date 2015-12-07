@@ -4,7 +4,6 @@
 
 ## Wrap-up todo
 
-- Replace placeholder enemy and player graphics
 - Add title screen graphic
 
 ## Todo

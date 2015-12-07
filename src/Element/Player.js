@@ -1,13 +1,13 @@
 /* global game, Phaser, ms */
 
 var Player = function(targetTile) {
-    Phaser.Sprite.call(this, game, 0, 0, 'pix');
+    Phaser.Sprite.call(this, game, 0, 0, 'human');
     game.add.existing(this);
     ms.player = this;
+    this.smoothed = false;
     this.anchor.set(0.5);
-    this.tint = 0x0000ff;
-    this.height = 70;
-    this.width = 40;
+    this.height = 100;
+    this.width = 100;
     this.maxHp = this.hp = 100;
     this.maxMp = this.mp = 5;
     this.x = targetTile.x;
