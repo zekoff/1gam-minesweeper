@@ -51,7 +51,7 @@ var Hud = function() {
             if (tile.enemies.length > 0) {
                 tile.revealEnemies();
                 tile.enemies.forEach(function(enemy) {
-                    enemy.damage(25);
+                    enemy.damage(70);
                 });
             }
             else {

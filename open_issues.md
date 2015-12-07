@@ -5,7 +5,6 @@
 ## Wrap-up todo
 
 - Replace placeholder enemy and player graphics
-- Tune numbers so that a reasonable challenge is provided (create spreadsheet?)
 - Add title screen graphic
 
 ## Todo
